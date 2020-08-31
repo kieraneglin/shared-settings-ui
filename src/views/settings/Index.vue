@@ -27,12 +27,7 @@ export default class SettingsIndex extends Vue {
   ]
 
   openSetting({ name }: Setting) {
-    this.$router.push({
-      name: 'Show',
-      params: {
-        name
-      }
-    })
+    console.log(`Open ${name}`)
   }
 }
 </script>
