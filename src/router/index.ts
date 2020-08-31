@@ -1,14 +1,21 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+
+import Show from '../views/settings/Show.vue'
+import Index from '../views/settings/Index.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Index',
+    component: Index
+  },
+  {
+    path: '/:name',
+    name: 'Show',
+    component: Show
   }
 ]
 
