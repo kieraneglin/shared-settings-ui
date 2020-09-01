@@ -1,7 +1,10 @@
 <template>
-  <div class="w-full">
-    <input v-model="localValue" class="input-base input-gray rounded w-full py-2 px-2" type="text" />
-  </div>
+  <input
+    v-model="localValue"
+    class="input-base input-gray rounded w-full py-2 px-2"
+    type="text"
+    placeholder="[Insert text here]"
+  />
 </template>
 <script lang="ts">
 import { Component, Watch } from 'vue-property-decorator'

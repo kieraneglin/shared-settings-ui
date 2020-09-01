@@ -16,7 +16,7 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class Navbar extends Vue {
   openSettingForm() {
-    console.log('TODO - setting form')
+    this.$emit('create-new-setting')
   }
 }
 </script>

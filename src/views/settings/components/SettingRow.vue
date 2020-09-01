@@ -1,16 +1,15 @@
 <template>
-  <div class="bg-white shadow-md rounded-lg px-4 py-6 mt-3 mx-4 md:mx-auto w-1/2">
-    <div class="flex justify-between w-full">
-      <div class="flex">
-        <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{ localSetting.name }}</h2>
-        <span class="text-gray-700 ml-2">{{ localSetting.type }}</span>
+  <div class="bg-white shadow-md rounded-lg px-4 py-6 mt-3 mx-4 md:mx-auto w-11/12 md:w-3/4 lg:w-1/2">
+    <div class="flex justify-between items-center w-full">
+      <div class="flex items-end">
+        <h2 class="text-lg font-semibold text-gray-900">{{ localSetting.name }}</h2>
+        <span class="text-gray-700 ml-2 text-sm">{{ localSetting.type }}</span>
       </div>
       <small @click="toggleOpen" class="text-sm text-gray-700 cursor-pointer">{{ toggleText }}</small>
     </div>
     <div v-if="open" class="mt-3">
       <div class="flex">
         <div class="flex items-center w-1/2">
-          <p class="text-gray-900 mr-2">Value:</p>
           <component :is="formComponent" :setting.sync="localSetting" />
         </div>
         <div class="flex justify-end items-center w-1/2">
@@ -44,7 +43,7 @@ import BooleanForm from './forms/BooleanForm.vue'
 export default class SettingRow extends Vue {
   @Prop(Object) readonly setting!: Setting
 
-  public open = !false
+  public open = false
   public localSetting: Setting = { ...this.setting }
 
   get toggleText() {

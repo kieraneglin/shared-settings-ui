@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <input v-model="localValue" class="input-base input-gray rounded w-1/2 py-2 px-2" type="text" />
-  </div>
+  <input v-model="localValue" class="input-base input-gray rounded py-2 px-2 w-full" type="text" />
 </template>
 <script lang="ts">
 import { Component, Watch } from 'vue-property-decorator'

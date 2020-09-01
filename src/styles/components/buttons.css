@@ -17,3 +17,7 @@
 .btn-red-border {
   @apply border border-red-500 text-red-700 hover:bg-red-500 hover:text-white hover:border-transparent;
 }
+
+.btn-gray-border {
+  @apply border border-gray-500 text-gray-700 hover:bg-gray-500 hover:text-white hover:border-transparent;
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <select :value="setting.value" @input="updateSetting" class="select-base text-gray-900 w-full pr-6 rounded">
+    <select :value="setting.value" @input="updateSetting" class="select-base select-gray w-full pr-6 rounded py-2 px-2">
       <option value="1">true</option>
       <option value="0">false</option>
     </select>

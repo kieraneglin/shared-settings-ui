@@ -1,8 +1,8 @@
 <template>
-  <div class="flex">
-    <input v-model="lowerBounds" class="input-base input-gray rounded py-2 px-2 w-1/4" type="number" />
-    <span class="flex self-end mx-2">..</span>
-    <input v-model="upperBounds" class="input-base input-gray rounded py-2 px-2 w-1/4" type="number" />
+  <div class="flex justify-between">
+    <input v-model="lowerBounds" class="input-base input-gray rounded py-2 px-2 w-1/3" type="number" />
+    <span class="flex self-end mx-2">to</span>
+    <input v-model="upperBounds" class="input-base input-gray rounded py-2 px-2 w-1/3" type="number" />
   </div>
 </template>
 <script lang="ts">
