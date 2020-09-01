@@ -5,6 +5,7 @@
     <div v-if="settings.length" class="flex flex-col items-center mb-3">
       <setting-row v-for="setting in settings" :key="setting.name" :setting="setting" @fetch-settings="fetchSettings" />
     </div>
+    <toast />
   </div>
 </template>
 <script lang="ts">
@@ -12,12 +13,14 @@ import { Component, Vue } from 'vue-property-decorator'
 
 import { Setting } from '@/lib/setting'
 
+import Toast from './components/Toast.vue'
 import Navbar from './components/Navbar.vue'
 import SettingRow from './components/SettingRow.vue'
 import NewSettingModal from './components/NewSettingModal.vue'
 
 @Component({
   components: {
+    Toast,
     Navbar,
     SettingRow,
     NewSettingModal

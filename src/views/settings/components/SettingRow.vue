@@ -96,7 +96,10 @@ export default class SettingRow extends Vue {
       }
     })
 
-    console.log('Setting deleted - TODO: add feedback to user')
+    this.$root.$emit('launch-toast', {
+      title: 'Success',
+      body: 'Setting deleted'
+    })
   }
 
   @Emit('fetch-settings')
@@ -114,7 +117,10 @@ export default class SettingRow extends Vue {
       })
     })
 
-    console.log('Setting saved - TODO: add feedback to user')
+    this.$root.$emit('launch-toast', {
+      title: 'Success',
+      body: 'Setting updated'
+    })
   }
 }
 </script>

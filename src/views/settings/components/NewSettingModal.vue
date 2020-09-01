@@ -160,7 +160,10 @@ export default class NewSettingModal extends Vue {
     this.$emit('close-modal')
     this.$emit('fetch-settings')
 
-    console.log('Setting created - TODO: add feedback to user')
+    this.$root.$emit('launch-toast', {
+      title: 'Success',
+      body: 'Setting created'
+    })
   }
 }
 </script>
