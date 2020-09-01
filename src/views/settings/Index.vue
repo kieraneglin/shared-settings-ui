@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
-    <div v-for="setting in mockSettings" :key="setting.name">
-      <span>{{ setting.name }} - {{ setting.value }}</span>
-      <button @click="openSetting(setting)">View</button>
+  <div>
+    <navbar />
+    <div v-if="settings.length" class="flex flex-col items-center">
+      <setting-row v-for="setting in settings" :key="setting.name" :setting="setting" @fetch-settings="fetchSettings" />
     </div>
   </div>
 </template>
@@ -11,23 +11,33 @@ import { Component, Vue } from 'vue-property-decorator'
 
 import { Setting } from '@/lib/setting'
 
-@Component
-export default class SettingsIndex extends Vue {
-  public mockSettings: Setting[] = [
-    {
-      name: 'signup_enabled',
-      type: 'boolean',
-      value: '1'
-    },
-    {
-      name: 'welcome_message',
-      type: 'string',
-      value: 'hey there!'
-    }
-  ]
+import Navbar from './components/Navbar.vue'
+import SettingRow from './components/SettingRow.vue'
 
-  openSetting({ name }: Setting) {
-    console.log(`Open ${name}`)
+@Component({
+  components: {
+    Navbar,
+    SettingRow
+  }
+})
+export default class SettingsIndex extends Vue {
+  public settings: Setting[] = []
+
+  created() {
+    this.fetchSettings()
+  }
+
+  async fetchSettings(): Promise<Setting[]> {
+    const response = await fetch(`${this.$apiHost}/api/settings`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    this.settings = await response.json()
+
+    return this.settings
   }
 }
 </script>
