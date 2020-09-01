@@ -17,6 +17,9 @@
           <button @click="saveSetting" :disabled="clean" class="btn-base btn-blue-border py-2 px-4 rounded h-10">
             Save
           </button>
+          <button @click="confirmDelete" class="btn-base btn-red-border py-2 px-4 ml-2 rounded h-10">
+            Delete
+          </button>
         </div>
       </div>
       <small class="text-gray-700" v-if="caveatText">{{ caveatText }}</small>
@@ -77,6 +80,24 @@ export default class SettingRow extends Vue {
 
   toggleOpen() {
     this.open = !this.open
+  }
+
+  confirmDelete() {
+    if (confirm(`Click OK to permanently delete "${this.setting.name}"`)) {
+      this.deleteSetting()
+    }
+  }
+
+  @Emit('fetch-settings')
+  async deleteSetting() {
+    await fetch(`${this.$apiHost}/api/settings/${this.setting.name}/destroy`, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    console.log('Setting deleted - TODO: add feedback to user')
   }
 
   @Emit('fetch-settings')
