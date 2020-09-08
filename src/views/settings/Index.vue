@@ -43,7 +43,7 @@ export default class SettingsIndex extends Vue {
   }
 
   async fetchSettings(): Promise<Setting[]> {
-    const response = await fetch(`${this.$apiHost}/api/settings`, {
+    const response = await fetch(`${this.$apiBase}/api/settings`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json'

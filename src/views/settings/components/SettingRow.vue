@@ -89,7 +89,7 @@ export default class SettingRow extends Vue {
 
   @Emit('fetch-settings')
   async deleteSetting() {
-    await fetch(`${this.$apiHost}/api/settings/${this.setting.name}/destroy`, {
+    await fetch(`${this.$apiBase}/api/settings/${this.setting.name}/destroy`, {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ export default class SettingRow extends Vue {
   async saveSetting() {
     const { name, type, value } = this.localSetting
 
-    await fetch(`${this.$apiHost}/api/settings/${name}`, {
+    await fetch(`${this.$apiBase}/api/settings/${name}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'

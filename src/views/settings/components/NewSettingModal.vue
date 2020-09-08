@@ -6,12 +6,12 @@
       </div>
 
       <!-- This element is to trick the browser into centering the modal contents. -->
-      <span class="hidden inline-block align-middle h-screen"></span>&#8203;
+      <span class="inline-block align-middle h-screen"></span>&#8203;
 
       <div class="modal-base my-8 align-middle max-w-lg w-full">
         <div class="bg-white px-4 py-5 pb-4">
           <div class="flex items-start">
-            <div class="mt-3 mt-0 text-left w-full">
+            <div class="mt-0 text-left w-full">
               <h3 class="text-xl leading-6 font-medium text-gray-900">
                 Create setting
               </h3>
@@ -24,7 +24,7 @@
                     v-model="name"
                     class="input-base input-gray rounded py-2 px-2 w-full"
                     id="name"
-                    placeholder="My setting"
+                    placeholder="my_setting"
                   />
                   <p class="text-gray-700 text-xs">Letters, numbers, and underscores only. snake_case preferred.</p>
                 </div>
@@ -145,7 +145,7 @@ export default class NewSettingModal extends Vue {
   async createSetting() {
     const { name, type, value } = this.assembledSetting
 
-    await fetch(`${this.$apiHost}/api/settings`, {
+    await fetch(`${this.$apiBase}/api/settings`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
