@@ -105,7 +105,7 @@ export default class SettingRow extends Vue {
 
   @Emit('fetch-settings')
   async saveSetting() {
-    const { name, type, value } = this.localSetting
+    const { name, type, value, encrypted } = this.localSetting
 
     await fetch(`${this.$apiBase}/api/settings/${name}`, {
       method: 'put',
@@ -114,7 +114,8 @@ export default class SettingRow extends Vue {
       },
       body: JSON.stringify({
         type,
-        value
+        value,
+        encrypted
       })
     })
 
