@@ -4,6 +4,7 @@
       <div class="flex items-end">
         <h2 class="text-lg font-semibold text-gray-900">{{ localSetting.name }}</h2>
         <span class="text-gray-700 ml-2 text-sm">{{ localSetting.type }}</span>
+        <span v-if="localSetting.encrypted" class="text-orange-600 ml-2 text-sm">(encrypted)</span>
       </div>
       <small @click="toggleOpen" class="text-sm text-gray-700 cursor-pointer">{{ toggleText }}</small>
     </div>
@@ -66,7 +67,7 @@ export default class SettingRow extends Vue {
     return ''
   }
 
-  get formComponent(): typeof Vue {
+  get formComponent(): Vue.VueConstructor {
     const componentMap = {
       range: RangeForm,
       number: NumberForm,

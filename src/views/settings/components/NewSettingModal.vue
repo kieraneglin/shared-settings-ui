@@ -17,19 +17,18 @@
               </h3>
               <div class="mt-6">
                 <div class="mb-4">
-                  <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                  <label class="block text-gray-700 text-sm font-bold mb-2">
                     Name
                   </label>
                   <input
                     v-model="name"
                     class="input-base input-gray rounded py-2 px-2 w-full"
-                    id="name"
                     placeholder="my_setting"
                   />
                   <p class="text-gray-700 text-xs">Letters, numbers, and underscores only. snake_case preferred.</p>
                 </div>
                 <div class="mb-4">
-                  <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                  <label class="block text-gray-700 text-sm font-bold mb-2">
                     Type
                   </label>
                   <div class="relative">
@@ -47,12 +46,18 @@
                   </div>
                 </div>
                 <div class="mb-4">
-                  <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                  <label class="block text-gray-700 text-sm font-bold mb-2">
                     Value
                   </label>
                   <div class="w-full">
                     <component :is="formComponent" :setting.sync="assembledSetting" />
                   </div>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2">
+                    Encrypt?
+                    <input v-model="encrypted" type="checkbox" class="ml-2" />
+                  </label>
                 </div>
               </div>
             </div>
@@ -98,8 +103,9 @@ export default class NewSettingModal extends Vue {
   public name = ''
   public type: SettingType = 'string'
   public value = ''
+  public encrypted = false
 
-  get formComponent(): typeof Vue {
+  get formComponent(): Vue.VueConstructor {
     const componentMap = {
       range: RangeForm,
       number: NumberForm,
@@ -118,7 +124,8 @@ export default class NewSettingModal extends Vue {
     return {
       name: this.name,
       type: this.type,
-      value: this.value
+      value: this.value,
+      encrypted: this.encrypted
     }
   }
 
@@ -143,7 +150,7 @@ export default class NewSettingModal extends Vue {
   }
 
   async createSetting() {
-    const { name, type, value } = this.assembledSetting
+    const { name, type, value, encrypted } = this.assembledSetting
 
     await fetch(`${this.$apiBase}/api/settings`, {
       method: 'post',
@@ -153,7 +160,8 @@ export default class NewSettingModal extends Vue {
       body: JSON.stringify({
         name,
         type,
-        value
+        value,
+        encrypted
       })
     })
 
